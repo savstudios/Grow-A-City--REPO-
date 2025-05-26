@@ -82,6 +82,14 @@ function PlayerStats.GetData(Player)
    end
 end
 
+function PlayerStats.ChangeData(Player, data, value)
+   local playerData = PlayerStats.GetData(Player)
+   
+   if playerData[data] then playerData[data] = value end
+
+   return playerData
+end
+
 function PlayerStats.LoadData(Player)
    
    -- Key to save the data into.
@@ -151,15 +159,18 @@ function PlayerStats.OnGameClose()
    -- Incase we are in studio, we'll wait 2 seconds for the data to save.
    if RunService:IsStudio() then task.wait(2) end
 
+   -- These variables give us every single player, how much there are and a BindableEvent for when we finish.
    local allPlayers = Players:GetChildren()
    local playersRemaining = #allPlayers
    local event = Instance.New("BindableEvent")
 
    for _, player in ipairs(allPlayers) do
       task.spawn(function()
+        -- We loop through every player and save their data.
          PlayerStats.SaveData(player)
          playersRemaining = playersRemaining - 1
 
+         -- Once we have finished, fire the event.
          if playersRemaining == 0 then
             event:Fire()
          end

@@ -13,3 +13,8 @@ Realistically the only way you could do this is if you go ahead and download thi
 
 ### V 0.0.1 (5/25/25)
 - Initial Setup
+
+### V 0.1.0 (5/26/25)
+- Added saving (and secure) DataStore system.
+- Added satisfying buttons
+- Added UI and money counter with formatting
