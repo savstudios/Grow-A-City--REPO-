@@ -24,7 +24,7 @@ local dataTemplate = {
    FinishedTutorial = false,
    PlotData = {
 
-      -- Each plot is 50x50 studs, with buildings being approximately 3-8 studs.
+      -- Each plot is 50x50 studs, with buildings being approximately 6-12 studs.
       PlotsUnlocked = {
          {
             {false, false, false, false},

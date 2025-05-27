@@ -2,6 +2,7 @@
 
 local Players = game:GetService('Players')
 local ReplicatedStorage = game:GetService('ReplicatedStorage')
+local CollectionService = game:GetService('CollectionService')
 
 -- Variables
 
@@ -10,6 +11,7 @@ local functions = ReplicatedStorage.Events.Functions
 local audio = ReplicatedStorage.Audio.SFX
 
 local UIMain = require(ReplicatedStorage.Shared.UI.UIMain)
+local PlaceBuildings = require(ReplicatedStorage.Shared.Core.PlaceBuilding)
 local player = Players.LocalPlayer
 local playerData
 
@@ -26,11 +28,17 @@ local toolsButton = uiTopBar.MidSection.Tools
 
 -- Functions
 
+PlaceBuildings.getPlayer(player);
 playerData = functions.GetData:InvokeServer();
 
 -- Syntax follows: name of the value (must be in a string), and value (must be in a numberic format)
 
 -- playerData = functions.ChangeData:InvokeServer("Cash", playerData["Cash"] + 50);
+
+for _, tool in pairs(player.Backpack:GetChildren()) do
+   print("E")
+   tool.Equipped:Connect(function(mouse) PlaceBuildings.toolEquipped(mouse, tool) end)
+end
 
 -- Loop through each child inside the MidSection and check if it is a frame, if so, do the event for each one.
 

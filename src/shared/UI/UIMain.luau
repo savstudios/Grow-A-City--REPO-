@@ -27,8 +27,8 @@ function UIMain.tweenHover(frame, style)
    if not UISize[frame] then UISize[frame] = frame.Size end
 
    -- TweenInfo's for different hovers
-   local hoverTween = TweenInfo.new(0.2, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut)
-   local moneyTween = TweenInfo.new(0.1, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut)
+   local hoverTween = TweenInfo.new(0.1, Enum.EasingStyle.Sine, Enum.EasingDirection.Out)
+   local moneyTween = TweenInfo.new(0.05, Enum.EasingStyle.Sine, Enum.EasingDirection.Out)
 
    -- Check the style and load a tween.
 

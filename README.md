@@ -18,3 +18,8 @@ Realistically the only way you could do this is if you go ahead and download thi
 - Added saving (and secure) DataStore system.
 - Added satisfying buttons
 - Added UI and money counter with formatting
+
+### V 0.1.1 (5/27/25)
+- Began scripting the placement system.
+- So far the goal is to be able to place buildings and they grow.
+- This will release as V 2.0.0
