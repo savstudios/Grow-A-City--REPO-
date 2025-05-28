@@ -36,7 +36,6 @@ playerData = functions.GetData:InvokeServer();
 -- playerData = functions.ChangeData:InvokeServer("Cash", playerData["Cash"] + 50);
 
 for _, tool in pairs(player.Backpack:GetChildren()) do
-   print("E")
    tool.Equipped:Connect(function(mouse) PlaceBuildings.toolEquipped(mouse, tool) end)
 end
 

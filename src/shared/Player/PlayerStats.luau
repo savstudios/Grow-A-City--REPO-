@@ -9,7 +9,7 @@ local Players = game:GetService('Players')
 -- Variables
 
 -- This is the key for the dataStore where we can access all of the stored data.
-local dataStore = DataStoreService:GetDataStore("Testing_V1")
+local dataStore = DataStoreService:GetDataStore("Testing_V2")
 
 --[[ This is the prefix for accessing the player's data.
    (e.g. PlayerData_ID_4396459) will be the key to access ID 4396459's data.
@@ -82,6 +82,20 @@ function PlayerStats.GetData(Player)
    end
 end
 
+function PlayerStats.AddData(Player, dataToAdd, type, name)
+   local data = PlayerStats.GetData(Player)
+
+   -- Check what type, this will expand later on.
+
+   if type == "newBuilding" then
+      data.PlotData.BuildingsPlaced[name] = dataToAdd
+   elseif type == "removeBuilding" then
+      data.PlotData.BuildingsPlaced[dataToAdd] = nil
+   end
+
+   return data
+end
+
 function PlayerStats.ChangeData(Player, data, value)
    local playerData = PlayerStats.GetData(Player)
    
@@ -148,8 +162,10 @@ function PlayerStats.SaveData(Player)
 
    -- Basic error handling.
    if success then
+      print(data)
       print("Data has been saved!")
    else
+      print(data)
       warn("Data has not been saved!")
    end
 end

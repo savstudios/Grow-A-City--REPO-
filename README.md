@@ -23,3 +23,8 @@ Realistically the only way you could do this is if you go ahead and download thi
 - Began scripting the placement system.
 - So far the goal is to be able to place buildings and they grow.
 - This will release as V 2.0.0
+
+### V 0.2.0 (5/28/25)
+- You are now able to place buildings!
+- The buildings also save!
+- V 0.3.0 will come out with the growth system!
