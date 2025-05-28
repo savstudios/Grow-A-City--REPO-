@@ -16,6 +16,8 @@ local connections = {}
 
 local functions = ReplicatedStorage.Events.Functions
 
+local growthSystem = require(ReplicatedStorage.Shared.Core.GrowthSystem)
+
 -- Functions
 
 -- This is a simple function just to get the player
@@ -63,6 +65,8 @@ function PlaceBuildings.placeBuilding(tool, pos)
 
       functions.AddData:InvokeServer(newData, "newBuilding", clone.Name..tostring(math.random(1, 100000)));
 
+      PlaceBuildings.GrowthInit(newData, clone)
+
       -- Code below is for VFX/SFX only!
       ReplicatedStorage.Audio.SFX.placeEffect:Play()
       task.spawn(function()
@@ -92,6 +96,8 @@ function PlaceBuildings.playerLoaded(Player, data)
 
       if building.Stage ~= 1 then
          -- TODO: Load buildings of valid stage.
+
+         buildingModel = ReplicatedStorage.Buildings[string.gsub(building.ID, "_"..tostring(building.Stage), "")]:WaitForChild(building.ID):Clone()
       end
 
       buildingModel.Parent = workspace.Plot.Buildings
@@ -103,7 +109,22 @@ function PlaceBuildings.playerLoaded(Player, data)
 
       local buildingCFrame = plotCenter * CFrame.new(buildingVector)
       buildingModel:SetPrimaryPartCFrame(buildingCFrame)
+
+      PlaceBuildings.GrowthInit(building, buildingModel)
    end
+end
+
+function PlaceBuildings.GrowthInit(buildingData, building)
+   task.spawn(function() 
+      local succeeded
+      while task.wait(0.5) do
+         succeeded = growthSystem.UpdatePercentage(buildingData, building, ReplicatedStorage.Buildings[string.gsub(buildingData.ID, "_"..tostring(buildingData.Stage), "")]:GetChildren())
+
+         if succeeded then
+            building = growthSystem.UpgradeBuilding(buildingData, building, building.PrimaryPart.CFrame)
+         end
+      end
+   end)
 end
 
 -- This will check if the tool that is equipped has the tag of 'Building', so we can continue

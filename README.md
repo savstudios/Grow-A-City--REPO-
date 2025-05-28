@@ -28,3 +28,8 @@ Realistically the only way you could do this is if you go ahead and download thi
 - You are now able to place buildings!
 - The buildings also save!
 - V 0.3.0 will come out with the growth system!
+
+### V 0.3.0 (5/28/25)
+- The buildings now grow!!
+- As well as saving, they can grow
+- It's very modular, you just need the models, a primary part and a tool!

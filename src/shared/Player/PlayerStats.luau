@@ -9,7 +9,7 @@ local Players = game:GetService('Players')
 -- Variables
 
 -- This is the key for the dataStore where we can access all of the stored data.
-local dataStore = DataStoreService:GetDataStore("Testing_V2")
+local dataStore = DataStoreService:GetDataStore("Testing_V7")
 
 --[[ This is the prefix for accessing the player's data.
    (e.g. PlayerData_ID_4396459) will be the key to access ID 4396459's data.
